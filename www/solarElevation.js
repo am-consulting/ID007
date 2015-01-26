@@ -87,6 +87,8 @@ function calculation(){
 	document.form2.hourAngleDegree.value=hourAngleDegree;
 	document.form2.solarElevationDegree.value=solarElevationDegree;
 	document.form2.solarOrientationDegree.value=solarOrientationDegree;
+/*
+	//Chart.js
 	document.form3.latitude.value=orig_latitude;
 	document.form3.longitude.value=longitude;
 	document.form3.hour.value=hour;
@@ -118,7 +120,6 @@ function calculation(){
 	data2=data2+"]"; //equationTime
 	data3=data3+"]"; //solarElevationDegree
 	data4=data4+"]"; //solarOrientationDegree
-	//Chart.js
 	chartData="";
 	chartData=chartData+"var data={";
 	chartData=chartData+label;
@@ -190,5 +191,80 @@ function calculation(){
 	//    datasetFill : true
 	});
 	//Chart.js
+*/
+}
+
+function graph01(){
+	loop=1;
+	graphtitle="lad="+orig_latitude+",lon="+longitude+",TIme="+hour+":"+minute+":"+second+".";	
+	$(document).ready(function(){
+	var graphData01 = [];
+	var graphData02 = [];
+	var graphData03 = [];
+	var graphData04 = [];
+	start=0;
+	end=days;
+	for(elapsedDays=start; elapsedDays<end; elapsedDays=elapsedDays+1*2){
+		calc_position();
+		graphData01.push([elapsedDays, sunDeclinationDegree]); 
+		graphData02.push([elapsedDays, equationTime]); 
+		graphData03.push([elapsedDays, solarElevationDegree]); 
+		graphData04.push([elapsedDays, solarOrientationDegree]); 
+	}
+	var plot01 = $.jqplot('chart', [graphData01,graphData02,graphData03,graphData04], 
+		{ 
+			title: graphtitle, 
+			seriesDefaults: {
+				rendererOptions: {
+					smooth: true
+				}
+			},
+			series:[ 
+				{
+					lineWidth:1 ,
+					showLine:true,
+					markerOptions:{show: false},
+					label:'a'
+				},
+				{
+					lineWidth:1 ,
+					showLine:true,
+					markerOptions:{show: false},
+					label:'b'
+				},
+				{
+					lineWidth:1 ,
+					showLine:true,
+					markerOptions:{show: false},
+					label:'c'
+				},
+				{
+					lineWidth:1 ,
+					showLine:true,
+					markerOptions:{show: false},
+					label:'d'
+				}
+			],
+			axes:{
+				xaxis:{
+					label:'Days'
+				},
+				yaxis:{
+					label:''
+				}
+			},
+			legend: {
+				show: true,
+				location: 'ne',
+				xoffset: 12,
+				yoffset: 12
+			}
+		}
+	);
+	});
+}
+
+function clearBox(chart){
+    document.getElementById(chart).innerHTML="";
 } 
 -->
