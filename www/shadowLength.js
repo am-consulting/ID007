@@ -160,17 +160,11 @@ function calculation(){
 			dispHour=dispHour;
 		}
 		calcResult=calcResult+dispHour+" , "+solarElavation_degree[hourID]+" , "+solarAzimuth_degree[hourID]+" , "+shadowLength[hourID]+"\n";
-		if(maxLength<shadowLength_horizontal[hourID]){
-			maxLength=shadowLength_horizontal[hourID];
+		if(maxLength<Math.abs(shadowLength_horizontal[hourID])){
+			maxLength=Math.abs(shadowLength_horizontal[hourID]);
 		}
-		if(maxLength<shadowLength_vertical[hourID]){
-			maxLength=shadowLength_vertical[hourID];
-		}
-		if(minLength>shadowLength_horizontal[hourID]){
-			minLength=shadowLength_horizontal[hourID];
-		}
-		if(minLength>shadowLength_vertical[hourID]){
-			minLength=shadowLength_vertical[hourID];
+		if(maxLength<Math.abs(shadowLength_vertical[hourID])){
+			maxLength=Math.abs(shadowLength_vertical[hourID]);
 		}
 		cnt=cnt+1;
 	}
@@ -197,90 +191,70 @@ function graph01(){
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
 					showLine:true,
 					markerOptions:{show: false},
 					label:'',
-					color:'blue',
-					min: minLength,
-					max: maxLength 
+					color:'blue'
 				},
 				{
 					lineWidth:1 ,
@@ -290,17 +264,19 @@ function graph01(){
 						show: true,
 						labels:['8', '9', '10', '11', '12', '13', '14', '15', '16']
 					},
-					label:'',
-					min: minLength,
-					max: maxLength 
+					label:''
 				}
 			],
 			axes:{
-				xaxis:{
-					label:'m'
-				},
 				yaxis:{
-					label:'m'
+					label:'m',
+					min:-1*(Math.ceil(maxLength*1.1)),
+					max:Math.ceil(maxLength*1.1)
+				},
+				xaxis:{
+					label:'m',
+					min:-1*(Math.ceil(maxLength*1.1)),
+					max:Math.ceil(maxLength*1.1)
 				}
 			},
 			legend: {
